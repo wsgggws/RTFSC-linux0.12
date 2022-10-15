@@ -1,0 +1,14 @@
+* RTFSC-linux0.12
+
+Read The F**king Source Code About Linux-0.12
+
+
+** 参考:
++ 《操作系统真相还原》
++ 《Linux内核完全注释v5.0》
++ github: https://github.com/sunym1993/flash-linux0.11-talk
++ github: https://github.com/yifengyou/os-elephant
++ Bili: https://www.bilibili.com/video/BV1d4411v7u7?p=1
+
+** 视频
+Bili: https://space.bilibili.com/472722204
