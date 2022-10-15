@@ -1,0 +1,54 @@
+#+title: 01 配置 bochs 并内核只输出 RTFSC-linux0.12
+
+** tools
++ Bochs2.7: Bochs是一个x86硬件平台的开源模拟器, 它可以模拟各种硬件的配置。
++ GCC: C语言编译器
++ nasm: 汇编语言编译器
++ bximage: 硬盘构建工具
++ dd: 写数据到硬盘的工具
+
+
+** configure and install bochs2.7
+#+end_lang
+
+# SDL 全称 “Simple DirectMedia Layer” , SDL是一个开放源代码的跨平台多媒体开发库。对多媒体处理，如视频渲染，音频播放，鼠标/键盘控制等操作。
+brew install sdl2
+
+# 配置与安装 bochs2.7
+./configure --enable-ne2000 \
+            --enable-all-optimizations \
+            --enable-x86-64 \
+            --enable-x86-debugger \
+            --enable-vmx=2 \
+            --enable-pci \
+            --enable-usb \
+            --enable-usb-ohci \
+            --enable-e1000 \
+            --enable-debugger \
+            --with-sdl2 \
+            --prefix=$HOME/bochs
+
+make && make install
+
+# 让 bochs, bximage 可直接执行及方便配置bochsrc
+export PATH=$HOME/bochs/bin:$PATH
+export BXSHARE=$HOME/bochs/share/bochs
+#+end_src
+
+** Create a new hard disk image
+~bximage~
+
+** nasm 生成可执行文件
+~nasm -o mbr.bin os-elephant/code/c03/a/boot/mbr.S~
+
+** dd 将可执行文件写入 disk
+~dd if=./mbr.bin of=./hd60M.img bs=512 count=1  conv=notrunc~
+
+** config bochsrc
+see config/bochsrc.01.disk
+
+** start bochs
+~bochs -f bochsrc.01.disk~
+
+** rewrite mbr.S
+see codes/mbr.01.S

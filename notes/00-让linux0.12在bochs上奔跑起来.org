@@ -4,6 +4,3 @@
 + MacOS Monterey (version 12.2.1)
 + Bochs 2.7 (configurated) [[https://sourceforge.net/projects/bochs/files/bochs/2.7/]]
 + linux-0.12-080324 [[http://oldlinux.org/Linux.old/bochs/]]
-
-如视频所示
-
